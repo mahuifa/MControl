@@ -36,13 +36,13 @@ namespace MControl.Forms
             this.ButMaxmum = new System.Windows.Forms.PictureBox();
             this.ButMinmum = new System.Windows.Forms.PictureBox();
             this.Title = new System.Windows.Forms.Label();
-            this.icon = new System.Windows.Forms.PictureBox();
+            this.Micon = new System.Windows.Forms.PictureBox();
             this.TitleBar.SuspendLayout();
             this.panelBut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ButClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButMaxmum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButMinmum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Micon)).BeginInit();
             this.SuspendLayout();
             // 
             // TitleBar
@@ -50,7 +50,7 @@ namespace MControl.Forms
             this.TitleBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.TitleBar.Controls.Add(this.panelBut);
             this.TitleBar.Controls.Add(this.Title);
-            this.TitleBar.Controls.Add(this.icon);
+            this.TitleBar.Controls.Add(this.Micon);
             this.TitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.TitleBar.Location = new System.Drawing.Point(0, 0);
             this.TitleBar.MaximumSize = new System.Drawing.Size(0, 35);
@@ -58,6 +58,7 @@ namespace MControl.Forms
             this.TitleBar.Name = "TitleBar";
             this.TitleBar.Size = new System.Drawing.Size(523, 35);
             this.TitleBar.TabIndex = 0;
+            this.TitleBar.DoubleClick += new System.EventHandler(this.TitleBar_DoubleClick);
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
             this.TitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseUp);
             // 
@@ -83,8 +84,11 @@ namespace MControl.Forms
             this.ButClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ButClose.TabIndex = 3;
             this.ButClose.TabStop = false;
+            this.ButClose.Click += new System.EventHandler(this.ButClose_Click);
+            this.ButClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButClose_MouseDown);
             this.ButClose.MouseEnter += new System.EventHandler(this.ButClose_MouseEnter);
             this.ButClose.MouseLeave += new System.EventHandler(this.ButClose_MouseLeave);
+            this.ButClose.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButClose_MouseUp);
             // 
             // ButMaxmum
             // 
@@ -95,8 +99,11 @@ namespace MControl.Forms
             this.ButMaxmum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ButMaxmum.TabIndex = 2;
             this.ButMaxmum.TabStop = false;
+            this.ButMaxmum.Click += new System.EventHandler(this.ButMaxmum_Click);
+            this.ButMaxmum.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButMaxmum_MouseDown);
             this.ButMaxmum.MouseEnter += new System.EventHandler(this.ButMaxmum_MouseEnter);
             this.ButMaxmum.MouseLeave += new System.EventHandler(this.ButMaxmum_MouseLeave);
+            this.ButMaxmum.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButMaxmum_MouseUp);
             // 
             // ButMinmum
             // 
@@ -108,8 +115,11 @@ namespace MControl.Forms
             this.ButMinmum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ButMinmum.TabIndex = 1;
             this.ButMinmum.TabStop = false;
+            this.ButMinmum.Click += new System.EventHandler(this.ButMinmum_Click);
+            this.ButMinmum.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButMinmum_MouseDown);
             this.ButMinmum.MouseEnter += new System.EventHandler(this.ButMinmum_MouseEnter);
             this.ButMinmum.MouseLeave += new System.EventHandler(this.ButMinmum_MouseLeave);
+            this.ButMinmum.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButMinmum_MouseUp);
             // 
             // Title
             // 
@@ -122,16 +132,17 @@ namespace MControl.Forms
             this.Title.TabIndex = 1;
             this.Title.Text = "标题窗体";
             // 
-            // icon
+            // Micon
             // 
-            this.icon.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.icon.Location = new System.Drawing.Point(3, 3);
-            this.icon.MaximumSize = new System.Drawing.Size(29, 29);
-            this.icon.MinimumSize = new System.Drawing.Size(29, 29);
-            this.icon.Name = "icon";
-            this.icon.Size = new System.Drawing.Size(29, 29);
-            this.icon.TabIndex = 0;
-            this.icon.TabStop = false;
+            this.Micon.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Micon.Location = new System.Drawing.Point(3, 3);
+            this.Micon.MaximumSize = new System.Drawing.Size(29, 29);
+            this.Micon.MinimumSize = new System.Drawing.Size(29, 29);
+            this.Micon.Name = "Micon";
+            this.Micon.Size = new System.Drawing.Size(29, 29);
+            this.Micon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Micon.TabIndex = 0;
+            this.Micon.TabStop = false;
             // 
             // FormWithTitle
             // 
@@ -139,15 +150,18 @@ namespace MControl.Forms
             this.ClientSize = new System.Drawing.Size(523, 361);
             this.Controls.Add(this.TitleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(112, 0);
             this.Name = "FormWithTitle";
             this.Text = "有标题的窗口";
+            this.SizeChanged += new System.EventHandler(this.FormWithTitle_SizeChanged);
             this.TitleBar.ResumeLayout(false);
             this.TitleBar.PerformLayout();
             this.panelBut.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ButClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButMaxmum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButMinmum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.icon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Micon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -155,7 +169,7 @@ namespace MControl.Forms
         #endregion
 
         private System.Windows.Forms.Panel TitleBar;
-        private System.Windows.Forms.PictureBox icon;
+        private System.Windows.Forms.PictureBox Micon;
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Panel panelBut;
         private System.Windows.Forms.PictureBox ButMinmum;
