@@ -154,6 +154,7 @@ namespace MControl.Forms
             this.MinimumSize = new System.Drawing.Size(112, 0);
             this.Name = "FormWithTitle";
             this.Text = "有标题的窗口";
+            this.Load += new System.EventHandler(this.FormWithTitle_Load);
             this.SizeChanged += new System.EventHandler(this.FormWithTitle_SizeChanged);
             this.TitleBar.ResumeLayout(false);
             this.TitleBar.PerformLayout();

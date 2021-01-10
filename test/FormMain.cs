@@ -15,6 +15,8 @@ namespace test
         public FormMain()
         {
             InitializeComponent();
+            this.TitlePosition = 0;
+            this.ShowIcon = true;
         }
     }
 }

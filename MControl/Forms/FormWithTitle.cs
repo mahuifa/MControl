@@ -16,6 +16,15 @@ namespace MControl.Forms
         {
             InitializeComponent();
 
+        }
+
+        /// <summary>
+        ///打开窗口 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormWithTitle_Load(object sender, EventArgs e)
+        {
             InitTitleBar();
         }
 
@@ -45,6 +54,9 @@ namespace MControl.Forms
         }
 
         private bool m_ShowIcon = true;                                   //是否显示窗口图标
+        /// <summary>
+        /// 是否显示窗口图标
+        /// </summary>
         public bool ShowIcon
         {
             get
@@ -56,6 +68,22 @@ namespace MControl.Forms
                 m_ShowIcon = value;
             }
         }
+
+        /// <summary>
+        /// 设置、获取窗口标题栏背景色
+        /// </summary>
+        public Color TitleBarColor
+        {
+            get
+            {
+                return TitleBar.BackColor;
+            }
+            set
+            {
+                TitleBar.BackColor = value;
+            }
+        }
+
         #endregion
 
         #region 按键高亮
@@ -293,6 +321,7 @@ namespace MControl.Forms
             }
         }
 
+
         /// <summary>
         /// 窗口大小变化是保证标题居中显示
         /// </summary>
@@ -307,5 +336,7 @@ namespace MControl.Forms
         }
 
         #endregion
+
+        
     }
 }
