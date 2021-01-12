@@ -15,8 +15,22 @@ namespace test
         public FormMain()
         {
             InitializeComponent();
-            this.TitlePosition = 0;
-            this.ShowIcon = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+             this.Icon = new Icon(@"C:\Users\mhf\Pictures\图标\飞机.ico");
+            this.Text = "主窗口";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.TitlePosition = !this.TitlePosition;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.ShowIcon = !this.ShowIcon;
         }
     }
 }

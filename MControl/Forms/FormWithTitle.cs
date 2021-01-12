@@ -13,65 +13,69 @@ namespace MControl.Forms
     public partial class FormWithTitle : Form
     {
         public FormWithTitle()
+
         {
             InitializeComponent();
 
         }
 
+        #region 标题栏设置
+
         /// <summary>
-        ///打开窗口 
+        ///  获取或设置窗体的图标。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormWithTitle_Load(object sender, EventArgs e)
+        /// <returns>
+        /// System.Drawing.Icon，表示窗体的图标。
+        /// </returns>
+        public new Icon  Icon
         {
-            InitTitleBar();
-        }
-
-        #region 初始化标题栏
-
-        private void InitTitleBar()
-        {
-            //初始化标题位置
-            if (m_TitlePosition == 1)
+            get
             {
-                Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
+                return base.Icon;
             }
-
-            //初始化图标
-            if (m_ShowIcon)
+            set
             {
-                Icon icon = this.Icon;
+                Icon icon = value;
                 MemoryStream mStream = new MemoryStream();
                 icon.Save(mStream);
                 Image image = Image.FromStream(mStream);
                 Micon.Image = image;
             }
-            if(!m_ShowIcon && m_TitlePosition == 0)
-            {
-                Title.Location = new Point(10, 10);
-            }
         }
 
-        private bool m_ShowIcon = true;                                   //是否显示窗口图标
         /// <summary>
-        /// 是否显示窗口图标
+        /// 获取或设置一个值，该值指示是否在窗体的标题栏中显示图标。
         /// </summary>
-        public bool ShowIcon
+        /// <returns>
+        /// 如果窗体在标题栏中显示图标，则为 true；否则为 false。 默认值为 true。
+        /// </returns>
+        public new bool ShowIcon
         {
             get
             {
-                return m_ShowIcon;
+                return Micon.Visible;
             }
             set
             {
-                m_ShowIcon = value;
+                Micon.Visible = value;
+                if (!value && m_TitlePosition)
+                {
+                    this.Title.Location = new Point(10, 10);
+                }
+                else
+                {
+                    this.Title.Location = new Point(40, 10);
+                }
             }
         }
 
         /// <summary>
-        /// 设置、获取窗口标题栏背景色
+        ///  获取或设置标题栏的背景色。
         /// </summary>
+        /// <returns>
+        ///  表示控件背景色的 System.Drawing.Color。 默认为 System.Drawing.SystemColors.ActiveCaption;
+        ///  属性的值。
+        /// </returns>
         public Color TitleBarColor
         {
             get
@@ -84,6 +88,70 @@ namespace MControl.Forms
             }
         }
 
+        /// <summary>
+        /// 获取或设置窗口的标题。
+        /// </summary>
+        /// <returns>
+        /// 窗口的标题。
+        /// </returns>
+        public new string Text
+        {
+            get
+            {
+                return Title.Text;
+            }
+            set
+            {
+                Title.Text = value;
+            }
+        }
+
+        private bool m_TitlePosition = true;                                      //保存标题位置
+        /// <summary>
+        /// 获取或设置窗口标题的位置。
+        /// </summary>
+        /// <returns>
+        /// 返回true表示标题在标题栏左边，返回false表示标题在标题栏中间。
+        /// </returns>
+        public bool TitlePosition
+        {
+            get
+            {
+                return m_TitlePosition;
+            }
+            set
+            {
+                m_TitlePosition = value;
+                if(!value)
+                {
+                    Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
+                }
+                else
+                {
+                    if(Micon.Visible)
+                    {
+                    this.Title.Location = new Point(40, 10);
+                    }
+                    else
+                    {
+                        this.Title.Location = new Point(10, 10);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 窗口大小变化是保证标题居中显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormWithTitle_SizeChanged(object sender, EventArgs e)
+        {
+            if (!m_TitlePosition)
+            {
+                Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
+            }
+        }
         #endregion
 
         #region 按键高亮
@@ -294,49 +362,6 @@ namespace MControl.Forms
         }
         #endregion
           
-        #region 标题显示位置
-        /// <summary>
-        /// 设置窗口标题位置
-        /// </summary>
-        public enum EnumTitlePosition
-        {
-            Left = 0,
-            Center = 1
-        }
-
-        private int m_TitlePosition = 0;                                      //保存标题位置
-
-        /// <summary>
-        /// 窗口标题位置，使用EnumTitlePosition
-        /// </summary>
-        public int TitlePosition
-        {
-            get
-            {
-                return m_TitlePosition;
-            }
-            set
-            {
-                m_TitlePosition = value;
-            }
-        }
-
-
-        /// <summary>
-        /// 窗口大小变化是保证标题居中显示
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormWithTitle_SizeChanged(object sender, EventArgs e)
-        {
-            if(m_TitlePosition == 1)
-            {
-                Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
-            }
-        }
-
-        #endregion
-
-        
     }
+
 }
