@@ -20,7 +20,14 @@ namespace test
         private void button1_Click(object sender, EventArgs e)
         {
              this.Icon = new Icon(@"C:\Users\mhf\Pictures\图标\飞机.ico");
-            this.Text = "主窗口";
+            if(this.Text == "主窗口")
+            {
+                this.Text = "标题窗口";
+            }
+            else
+            {
+                this.Text = "主窗口";
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

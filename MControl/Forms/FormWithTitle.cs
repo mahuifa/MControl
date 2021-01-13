@@ -43,6 +43,7 @@ namespace MControl.Forms
             }
         }
 
+        private bool g_bMiconVisible = true;                                       //不使用变量控制则会出现初始化时先初始化Title，后初始化icon，导致Micon被Title覆盖
         /// <summary>
         /// 获取或设置一个值，该值指示是否在窗体的标题栏中显示图标。
         /// </summary>
@@ -53,18 +54,41 @@ namespace MControl.Forms
         {
             get
             {
-                return Micon.Visible;
+                return g_bMiconVisible;
             }
             set
             {
+                g_bMiconVisible = value;
                 Micon.Visible = value;
-                if (!value && m_TitlePosition)
+                AutoTitle();
+            }
+        }
+
+        /// <summary>
+        /// 更改图标、标题后自动调整标题位置
+        /// </summary>
+        private void AutoTitle()
+        {
+            if (g_bMiconVisible)
+            {
+                if (m_TitlePosition)
+                {
+                    this.Title.Location = new Point(40, 10);
+                }
+                else
+                {
+                    this.Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
+                }
+            }
+            else
+            {
+                if (m_TitlePosition)
                 {
                     this.Title.Location = new Point(10, 10);
                 }
                 else
                 {
-                    this.Title.Location = new Point(40, 10);
+                    this.Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
                 }
             }
         }
@@ -103,6 +127,7 @@ namespace MControl.Forms
             set
             {
                 Title.Text = value;
+                AutoTitle();
             }
         }
 
@@ -122,21 +147,7 @@ namespace MControl.Forms
             set
             {
                 m_TitlePosition = value;
-                if(!value)
-                {
-                    Title.Location = new Point((this.Size.Width - Title.Size.Width) / 2, 10);
-                }
-                else
-                {
-                    if(Micon.Visible)
-                    {
-                    this.Title.Location = new Point(40, 10);
-                    }
-                    else
-                    {
-                        this.Title.Location = new Point(10, 10);
-                    }
-                }
+                AutoTitle();
             }
         }
 
