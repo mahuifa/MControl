@@ -1,7 +1,7 @@
 ﻿
 namespace MControl.Forms
 {
-    partial class FormWithTitle
+    partial class MFormWithTitle
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace MControl.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWithTitle));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MFormWithTitle));
             this.TitleBar = new System.Windows.Forms.Panel();
             this.panelBut = new System.Windows.Forms.Panel();
             this.ButClose = new System.Windows.Forms.PictureBox();

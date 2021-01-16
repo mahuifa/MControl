@@ -1,4 +1,17 @@
-﻿using System;
+﻿/*****************************************************************************************************
+文件名: MFormWithTitle.cs
+作  者: MHF
+描  述: 当前类为带标题栏的自定义窗口类
+版  本: 0.1.0
+日  期: 2021.1.14
+功  能：1、窗口图标的设置、隐藏；
+        2、标题显示在窗口左上角、居中显示；
+        3、鼠标点击标题栏移动窗口；
+        4、鼠标缩放窗口大小；
+        5、设置标题字体
+*****************************************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +23,9 @@ using System.Windows.Forms;
 
 namespace MControl.Forms
 {
-    public partial class FormWithTitle : Form
+    public partial class MFormWithTitle : Form
     {
-        public FormWithTitle()
+        public MFormWithTitle()
 
         {
             InitializeComponent();
@@ -60,14 +73,14 @@ namespace MControl.Forms
             {
                 g_bMiconVisible = value;
                 Micon.Visible = value;
-                AutoTitle();
+                UpdateTitle();
             }
         }
 
         /// <summary>
-        /// 更改图标、标题后自动调整标题位置
+        /// 更改图标、标题后刷新标题位置
         /// </summary>
-        private void AutoTitle()
+        private void UpdateTitle()
         {
             if (g_bMiconVisible)
             {
@@ -127,7 +140,26 @@ namespace MControl.Forms
             set
             {
                 Title.Text = value;
-                AutoTitle();
+
+                UpdateTitle();
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置窗口标题的字体。
+        /// </summary>
+        /// <returns>
+        /// 窗口的标题字体。
+        /// </returns>
+        public Font TitleFont
+        {
+            get
+            {
+                return Title.Font;
+            }
+            set
+            {
+                Title.Font = value;
             }
         }
 
@@ -147,7 +179,7 @@ namespace MControl.Forms
             set
             {
                 m_TitlePosition = value;
-                AutoTitle();
+                UpdateTitle();
             }
         }
 
@@ -228,6 +260,10 @@ namespace MControl.Forms
         const int HTBOTTOM = 15;    //下边界
         const int HTBOTTOMLEFT = 0x10;    //左下角
         const int HTBOTTOMRIGHT = 17;     //右下角
+        /// <summary>
+        /// 窗口大小缩放
+        /// </summary>
+        /// <param name="m"></param>
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)

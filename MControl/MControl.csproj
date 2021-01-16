@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\MControl.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\FormWithTitle.cs">
+    <Compile Include="Controls\MTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\MFormWithTitle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormWithTitle.Designer.cs">
-      <DependentUpon>FormWithTitle.cs</DependentUpon>
+    <Compile Include="Forms\MFormWithTitle.Designer.cs">
+      <DependentUpon>MFormWithTitle.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
@@ -54,14 +58,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tools\MPlotTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Colors\" />
-    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\FormWithTitle.resx">
-      <DependentUpon>FormWithTitle.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MFormWithTitle.resx">
+      <DependentUpon>MFormWithTitle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -73,12 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CloseWhite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MaximizeBlack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\MaximizeWhite.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RestoreBlack.png" />
@@ -97,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaximizeBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaximizeWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

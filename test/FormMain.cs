@@ -10,7 +10,7 @@ using MControl.Forms;
 
 namespace test
 {
-    public partial class FormMain : FormWithTitle
+    public partial class FormMain : MFormWithTitle
     {
         public FormMain()
         {
