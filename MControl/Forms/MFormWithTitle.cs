@@ -51,6 +51,7 @@ namespace MControl.Forms
             }
             set
             {
+                base.Icon = value;
                 Icon icon = value;
                 MemoryStream mStream = new MemoryStream();
                 icon.Save(mStream);
@@ -116,6 +117,7 @@ namespace MControl.Forms
         ///  表示控件背景色的 System.Drawing.Color。 默认为 System.Drawing.SystemColors.ActiveCaption;
         ///  属性的值。
         /// </returns>
+        [Category("自定义属性"), Description("设置标题栏颜色")]
         public Color TitleBarColor
         {
             get
@@ -155,6 +157,7 @@ namespace MControl.Forms
         /// <returns>
         /// 窗口的标题字体。
         /// </returns>
+        [Category("自定义属性"), Description("设置窗口标题的字体。")]
         public Font TitleFont
         {
             get
@@ -174,6 +177,7 @@ namespace MControl.Forms
         /// <returns>
         /// 返回true表示标题在标题栏左边，返回false表示标题在标题栏中间。
         /// </returns>
+        [Category("自定义属性"), Description("设置窗口标题的位置。")]
         public bool TitlePosition
         {
             get
