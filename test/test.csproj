@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MControl">
-      <HintPath>..\MControl\bin\Release\MControl.dll</HintPath>
+      <HintPath>..\MControl\bin\Debug\MControl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

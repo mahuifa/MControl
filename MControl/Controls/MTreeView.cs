@@ -6,7 +6,9 @@
 日  期: 2021.1.14
 功  能：1、重绘节点；
         2、设置节点中文本对齐方式；
-        
+        3、设置节点分割线是否显示、大小、颜色；
+        4、设置节点图标显示方式、图标大小；
+        5、设置节点单击打开；
 *****************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -22,8 +24,6 @@ namespace MControl.Controls
 {
     public partial class MTreeView : TreeView
     {
-
-
         public MTreeView()
         {
 
@@ -140,10 +140,6 @@ namespace MControl.Controls
         /// 设置节点图标显示位置
         /// </summary>
         int m_nNodeImageAlign = (int)enumNodeImageAlign.Left;
-        /// <summary>
-        /// 设置节点图标大小
-        /// </summary>
-        int m_nNodeImageWidth = 16;
         #endregion
 
         #region 图片
@@ -240,9 +236,9 @@ namespace MControl.Controls
                 case (int)ContentAlignment.TopLeft:
                     {
                         l_pointF.X = e.Bounds.Left + (e.Node.Level * this.Indent);
-                        if (m_nNodeImageAlign == 0)
+                        if (m_nNodeImageAlign == 0 && this.ImageList != null)                      //显示图标时调整文本显示坐标
                         {
-                            l_pointF.X += (m_nNodeImageWidth + 2);
+                            l_pointF.X += (this.ImageList.ImageSize.Width + 2);
                         }
                         l_pointF.Y = e.Bounds.Top + 1;
                         break;
@@ -255,9 +251,9 @@ namespace MControl.Controls
                 case (int)ContentAlignment.TopRight:
                     {
                         l_pointF.X = e.Bounds.Right - (int)l_sizeF.Width - 1;
-                        if (m_nNodeImageAlign == 1)
+                        if (m_nNodeImageAlign == 1 && this.ImageList != null)
                         {
-                            l_pointF.X -= (m_nNodeImageWidth + 2);
+                            l_pointF.X -= (this.ImageList.ImageSize.Width + 2);
                         }
                         l_pointF.Y = e.Bounds.Top + 1;
                         break;
@@ -265,9 +261,9 @@ namespace MControl.Controls
                 case (int)ContentAlignment.MiddleLeft:
                     {
                         l_pointF.X = e.Bounds.Left + (e.Node.Level * this.Indent);
-                        if (m_nNodeImageAlign == 0)
+                        if (m_nNodeImageAlign == 0 && this.ImageList != null)
                         {
-                            l_pointF.X += (m_nNodeImageWidth + 2);
+                            l_pointF.X += (this.ImageList.ImageSize.Width + 2);
                         }
                         break;
                     }
@@ -279,18 +275,18 @@ namespace MControl.Controls
                 case (int)ContentAlignment.MiddleRight:
                     {
                         l_pointF.X = e.Bounds.Right - (int)l_sizeF.Width - 1;
-                        if (m_nNodeImageAlign == 1)
+                        if (m_nNodeImageAlign == 1 && this.ImageList != null)
                         {
-                            l_pointF.X -= (m_nNodeImageWidth + 2);
+                            l_pointF.X -= (this.ImageList.ImageSize.Width + 2);
                         }
                         break;
                     }
                 case (int)ContentAlignment.BottomLeft:
                     {
                         l_pointF.X = e.Bounds.Left + (e.Node.Level * this.Indent);
-                        if (m_nNodeImageAlign == 0)
+                        if (m_nNodeImageAlign == 0 && this.ImageList != null)
                         {
-                            l_pointF.X += (m_nNodeImageWidth + 2);
+                            l_pointF.X += (this.ImageList.ImageSize.Width + 2);
                         }
                         l_pointF.Y = e.Bounds.Bottom - (int)l_sizeF.Height - 1;
                         break;
@@ -303,9 +299,9 @@ namespace MControl.Controls
                 case (int)ContentAlignment.BottomRight:
                     {
                         l_pointF.X = e.Bounds.Right - (int)l_sizeF.Width - 1;
-                        if (m_nNodeImageAlign == 1)
+                        if (m_nNodeImageAlign == 1 && this.ImageList != null)
                         {
-                            l_pointF.X -= (m_nNodeImageWidth + 2);
+                            l_pointF.X -= (this.ImageList.ImageSize.Width + 2);
                         }
                         l_pointF.Y = e.Bounds.Bottom - (int)l_sizeF.Height -1;
                         break;
@@ -442,33 +438,6 @@ namespace MControl.Controls
         }
 
         /// <summary>
-        ///  获取或设置节点图标宽度，高度随宽度自动调整。
-        ///  最大不超过节点高度。
-        /// </summary>
-        /// <returns>
-        /// 节点图标大小
-        /// </returns>
-        [Category("自定义属性"), Description("设置节点图标大小，不超过节点高度。")]
-        public int NodeImageWidth
-        {
-            get
-            {
-                return m_nNodeImageWidth;
-            }
-            set
-            {
-                if(value >= this.ItemHeight)
-                {
-                    m_nNodeImageWidth = this.ItemHeight;
-                }
-                else
-                {
-                    m_nNodeImageWidth = value;
-                }
-            }
-        }
-
-        /// <summary>
         /// 设置节点图标显示坐标
         /// </summary>
         /// <param name="e"></param>
@@ -479,19 +448,19 @@ namespace MControl.Controls
             {
                 return new Rectangle(-10000, -10000, 0, 0);
             }
-
+            Size l_size = this.ImageList.ImageSize;
             int l_nX = 1;
-            int l_nY = e.Bounds.Top + (e.Bounds.Height - m_nNodeImageWidth) / 2;
+            int l_nY = e.Bounds.Top + (e.Bounds.Height - l_size.Height) / 2;
             if (m_nNodeImageAlign == 0)
             {
                 l_nX = 1;
             }
             else
             {
-                l_nX = e.Bounds.Right - 5 - m_nNodeImageWidth;
+                l_nX = e.Bounds.Right - 5 - l_size.Width;
             }
 
-            return new Rectangle(l_nX, l_nY, m_nNodeImageWidth, m_nNodeImageWidth);
+            return new Rectangle(l_nX, l_nY, l_size.Width, l_size.Height);
         }
         #endregion
 
@@ -526,7 +495,19 @@ namespace MControl.Controls
             /**************************************绘制节点图标*********************************************************/
             if (m_nNodeImageMode == 1)                  
             {
-               
+                //节点图标绘制(必须放在最后，否则显示不出来)
+                if (base.ImageList != null && e.Node.ImageIndex >= 0 && e.Node.ImageIndex <= base.ImageList.Images.Count)
+                {
+                    int l_nIndex = e.Node.ImageIndex;
+                    try
+                    {
+                        Image l_image = this.ImageList.Images[l_nIndex];
+                        e.Graphics.DrawImage(l_image, GetImageAlign(e));
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
             }
             else if(m_nNodeImageMode == 2)
             {
@@ -541,23 +522,7 @@ namespace MControl.Controls
                         e.Graphics.DrawImage(this.m_imageNodeClose, GetImageAlign(e));
                     }
                 }
-                
-
-                /*//节点图标绘制(必须放在最后，否则显示不出来)
-                            if (base.ImageList != null && e.Node.ImageIndex >= 0 && e.Node.ImageIndex <= base.ImageList.Images.Count)
-                            {
-                                //节点头图标绘制
-                                if (e.Node.IsExpanded)
-                                {
-                                    e.Graphics.DrawImage(this.ImageList.Images[e.Node.ImageIndex], new Rectangle(e.Node.Bounds.X, e.Node.Bounds.Y, 20, 20));
-                                }
-                                else
-                                {
-                                    e.Graphics.DrawImage(this.ImageList.Images[e.Node.ImageIndex], new Rectangle(e.Node.Bounds.X, e.Node.Bounds.Y, 20, 20));
-                                }
-                            }*/
             }
-
         }
 
         protected override void OnNodeMouseClick(TreeNodeMouseClickEventArgs e)

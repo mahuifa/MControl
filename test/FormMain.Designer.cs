@@ -102,7 +102,7 @@ namespace test
             this.mTreeView1.NodeDividingLine = false;
             this.mTreeView1.NodeImageAlign = MControl.Controls.MTreeView.enumNodeImageAlign.Left;
             this.mTreeView1.NodeImageMode = MControl.Controls.MTreeView.enumNodeImageMode.OpenAndClose;
-            this.mTreeView1.NodeImageWidth = 35;
+            treeNode1.ImageIndex = 4;
             treeNode1.Name = "节点4";
             treeNode1.Text = "节点4";
             treeNode2.Name = "节点1";
@@ -113,7 +113,7 @@ namespace test
             treeNode4.Text = "节点5";
             treeNode5.Name = "节点6";
             treeNode5.Text = "节点6";
-            treeNode6.ImageIndex = 2;
+            treeNode6.ImageIndex = 0;
             treeNode6.Name = "forms";
             treeNode6.Text = "窗体";
             treeNode7.Name = "节点7";
@@ -121,11 +121,13 @@ namespace test
             treeNode7.Text = "节点7";
             treeNode8.Name = "节点8";
             treeNode8.Text = "节点8";
-            treeNode9.ImageIndex = 1;
+            treeNode9.ImageIndex = 2;
             treeNode9.Name = "节点1";
             treeNode9.Text = "节点1";
+            treeNode10.ImageIndex = 2;
             treeNode10.Name = "节点2";
             treeNode10.Text = "节点2";
+            treeNode11.ImageIndex = 2;
             treeNode11.Name = "节点3";
             treeNode11.Text = "节点3";
             treeNode12.Name = "节点8";
@@ -134,6 +136,7 @@ namespace test
             treeNode13.Text = "节点9";
             treeNode14.Name = "节点10";
             treeNode14.Text = "节点10";
+            treeNode15.ImageIndex = 6;
             treeNode15.Name = "节点0";
             treeNode15.Text = "节点0";
             treeNode16.Name = "节点1";
