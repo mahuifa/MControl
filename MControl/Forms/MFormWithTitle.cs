@@ -143,6 +143,7 @@ namespace MControl.Forms
             set
             {
                 Title.Text = value;
+                base.Text = value;
 
                 UpdateTitle();
             }
