@@ -9,6 +9,8 @@
         3、设置节点分割线是否显示、大小、颜色；
         4、设置节点图标显示方式、图标大小；
         5、设置节点单击打开；
+        6、设置节点字体样式、颜色；
+        7、设置节点背景色；
 *****************************************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,7 @@ namespace MControl.Controls
             this.BorderStyle = BorderStyle.None;
         }
 
+        #region 字段
         #region 枚举
 
         /// <summary>
@@ -150,7 +153,9 @@ namespace MControl.Controls
         /// <summary>
         /// 节点展开的图标
         /// </summary>
-        Image m_imageNodeOpen = null;                                                     
+        Image m_imageNodeOpen = null;
+
+        #endregion
 
         #endregion
 
@@ -180,7 +185,182 @@ namespace MControl.Controls
         }
         #endregion
 
-        #region 节点背景设置
+        #region 设置节点字体
+
+        /// <summary>
+        ///  获取或设置节点选中时的字体。
+        /// </summary>
+        /// <returns>
+        ///  节点选中时的字体。
+        /// </returns>
+        [Category("自定义属性"), Description("设置节点选中时的字体。")]
+        public Font FontNodeSelect
+        {
+            get
+            {
+                return m_FontNodeSelect;
+            }
+            set
+            {
+                m_FontNodeSelect = value;
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置鼠标位于节点上时的字体。
+        /// </summary>
+        /// <returns>
+        ///  鼠标位于节点上时的字体。
+        /// </returns>
+        [Category("自定义属性"), Description("设置鼠标位于节点上时的字体。")]
+        public Font FontNodeHot
+        {
+            get
+            {
+                return m_FontNodeHot;
+            }
+            set
+            {
+                m_FontNodeHot = value;
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置节点失去焦点时的字体。
+        /// </summary>
+        /// <returns>
+        ///  节点失去焦点时的字体。
+        /// </returns>
+        [Category("自定义属性"), Description("设置节点失去焦点时的字体。")]
+        public Font FontNodeDefault
+        {
+            get
+            {
+                return m_FontNodeDefault;
+            }
+            set
+            {
+                m_FontNodeDefault = value;
+            }
+        }
+
+
+        /// <summary>
+        ///  获取或设置节点选中时的字体颜色。
+        /// </summary>
+        /// <returns>
+        ///  节点选中时的字体颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置节点选中时的字体颜色。")]
+        public Color ColorSelectText
+        {
+            get
+            {
+                return m_ColorSelectText;
+            }
+            set
+            {
+                m_ColorSelectText = value;
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置鼠标进入节点时的字体颜色。
+        /// </summary>
+        /// <returns>
+        ///  鼠标进入节点时的字体颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置鼠标进入节点时的字体颜色。")]
+        public Color ColorTextHot
+        {
+            get
+            {
+                return m_ColorTextHot;
+            }
+            set
+            {
+                m_ColorTextHot = value;
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置节点失去焦点时的字体颜色。
+        /// </summary>
+        /// <returns>
+        ///  节点失去焦点时的字体颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置节点失去焦点时的字体颜色。")]
+        public Color ColorTextDefault
+        {
+            get
+            {
+                return m_ColorTextDefault;
+            }
+            set
+            {
+                m_ColorTextDefault = value;
+            }
+        }
+        #endregion
+
+        #region 设置节点背景色
+
+        /// <summary>
+        ///  获取或设置选中节点时节点的背景颜色。
+        /// </summary>
+        /// <returns>
+        ///  选中节点时节点的背景颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置选中节点时节点的背景颜色。")]
+        public Color ColorNodeSelect
+        {
+            get
+            {
+                return m_ColorNodeSelect;
+            }
+            set
+            {
+                m_ColorNodeSelect = value;
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置鼠标进入节点时节点的背景颜色。
+        /// </summary>
+        /// <returns>
+        ///  鼠标进入节点时节点的背景颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置鼠标进入节点时节点的背景颜色。")]
+        public Color ColorNodeHot
+        {
+            get
+            {
+                return m_ColorNodeHot;
+            }
+            set
+            {
+                m_ColorNodeHot = value;
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置失去焦点是节点的背景颜色。
+        /// </summary>
+        /// <returns>
+        ///  失去焦点是节点的背景颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置失去焦点是节点的背景颜色。")]
+        public Color ColorNodDefault
+        {
+            get
+            {
+                return m_ColorNodDefault;
+            }
+            set
+            {
+                m_ColorNodDefault = value;
+            }
+        }
 
         #endregion
 
@@ -444,7 +624,7 @@ namespace MControl.Controls
         /// <returns></returns>
         private Rectangle GetImageAlign(DrawTreeNodeEventArgs e)
         {
-            if (e.Bounds.Width == 0 && e.Bounds.Height == 0)                                        //去除打开节点时节点DrawTreeNodeEventArgs参数都为0时导致绘图出现残影
+            if (e.Bounds.Width == 0 && e.Bounds.Height == 0 || this.ImageList == null)    //去除打开节点时节点DrawTreeNodeEventArgs参数都为0时导致绘图出现残影
             {
                 return new Rectangle(-10000, -10000, 0, 0);
             }
@@ -467,64 +647,75 @@ namespace MControl.Controls
         protected override void OnDrawNode(DrawTreeNodeEventArgs e)
         {
             base.OnDrawNode(e);
-            e.Graphics.SetDrawhigh();
-            
-            /**************************************节点背景、文本绘制*********************************************************/
-            if (e.Node.IsSelected)                                        //选中节点
+            try
             {
-                e.Graphics.FillRectangle(new SolidBrush(m_ColorNodeSelect), e.Bounds);
-                e.Graphics.DrawString(e.Node.Text, m_FontNodeSelect, new SolidBrush(m_ColorSelectText), GetTextPoint(e, e.Node.Text, m_FontNodeSelect));
-            }
-            else if (e.State == TreeNodeStates.Hot)                //鼠标进入节点
-            {
-                e.Graphics.FillRectangle(new SolidBrush(m_ColorNodeHot), e.Bounds);
-                e.Graphics.DrawString(e.Node.Text, m_FontNodeHot, new SolidBrush(m_ColorTextHot), GetTextPoint(e, e.Node.Text, m_FontNodeHot));
-            }
-            else                                                        //其它状态
-            {
-                e.Graphics.FillRectangle(new SolidBrush(m_ColorNodDefault), e.Bounds);
-                e.Graphics.DrawString(e.Node.Text, m_FontNodeDefault, new SolidBrush(m_ColorTextDefault), GetTextPoint(e, e.Node.Text, m_FontNodeDefault));
-            }
+                e.Graphics.SetDrawhigh();
 
-            /**************************************绘制节点分割线*********************************************************/
-            if (m_bNodeDividingLine)
-            {
-                e.Graphics.DrawLine(new Pen(m_ColorDividingLind, m_fNodeDividingLineWidth), new Point(0, e.Bounds.Bottom - 1), new Point(e.Bounds.Right, e.Bounds.Bottom - 1));
-            }
-
-            /**************************************绘制节点图标*********************************************************/
-            if (m_nNodeImageMode == 1)                  
-            {
-                //节点图标绘制(必须放在最后，否则显示不出来)
-                if (base.ImageList != null && e.Node.ImageIndex >= 0 && e.Node.ImageIndex <= base.ImageList.Images.Count)
+                /**************************************节点背景、文本绘制*********************************************************/
+                if (e.Node.IsSelected)                                        //选中节点
                 {
-                    int l_nIndex = e.Node.ImageIndex;
-                    try
+                    e.Graphics.FillRectangle(new SolidBrush(m_ColorNodeSelect), e.Bounds);
+                    e.Graphics.DrawString(e.Node.Text, m_FontNodeSelect, new SolidBrush(m_ColorSelectText), GetTextPoint(e, e.Node.Text, m_FontNodeSelect));
+                }
+                else if (e.State == TreeNodeStates.Hot)                //鼠标进入节点
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(m_ColorNodeHot), e.Bounds);
+                    e.Graphics.DrawString(e.Node.Text, m_FontNodeHot, new SolidBrush(m_ColorTextHot), GetTextPoint(e, e.Node.Text, m_FontNodeHot));
+                }
+                else                                                        //其它状态
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(m_ColorNodDefault), e.Bounds);
+                    e.Graphics.DrawString(e.Node.Text, m_FontNodeDefault, new SolidBrush(m_ColorTextDefault), GetTextPoint(e, e.Node.Text, m_FontNodeDefault));
+                }
+
+                /**************************************绘制节点分割线*********************************************************/
+                if (m_bNodeDividingLine)
+                {
+                    e.Graphics.DrawLine(new Pen(m_ColorDividingLind, m_fNodeDividingLineWidth), new Point(0, e.Bounds.Bottom - 1), new Point(e.Bounds.Right, e.Bounds.Bottom - 1));
+                }
+
+                /**************************************绘制节点图标*********************************************************/
+                if (m_nNodeImageMode == 1)
+                {
+                    //节点图标绘制(必须放在最后，否则显示不出来)
+                    if (base.ImageList != null && e.Node.ImageIndex >= 0 && e.Node.ImageIndex <= base.ImageList.Images.Count)
                     {
-                        Image l_image = this.ImageList.Images[l_nIndex];
-                        e.Graphics.DrawImage(l_image, GetImageAlign(e));
+                        int l_nIndex = e.Node.ImageIndex;
+                        try
+                        {
+                            Image l_image = this.ImageList.Images[l_nIndex];
+                            e.Graphics.DrawImage(l_image, GetImageAlign(e));
+                        }
+                        catch (Exception ex)
+                        {
+                        }
                     }
-                    catch (Exception ex)
+                }
+                else if (m_nNodeImageMode == 2)
+                {
+                    if (e.Node.GetNodeCount(false) > 0)
                     {
+                        if (m_imageNodeOpen != null && e.Node.IsExpanded)
+                        {
+                            e.Graphics.DrawImage(this.m_imageNodeOpen, GetImageAlign(e));
+                        }
+                        if (m_imageNodeClose != null && !e.Node.IsExpanded)
+                        {
+                            e.Graphics.DrawImage(this.m_imageNodeClose, GetImageAlign(e));
+                        }
                     }
                 }
             }
-            else if(m_nNodeImageMode == 2)
+            catch(Exception ex)
             {
-                if(e.Node.GetNodeCount(false) > 0)
-                {
-                    if (m_imageNodeOpen != null && e.Node.IsExpanded)
-                    {
-                        e.Graphics.DrawImage(this.m_imageNodeOpen, GetImageAlign(e));
-                    }
-                    if (m_imageNodeClose != null && !e.Node.IsExpanded)
-                    {
-                        e.Graphics.DrawImage(this.m_imageNodeClose, GetImageAlign(e));
-                    }
-                }
+                throw ex;
             }
         }
 
+        /// <summary>
+        /// 单击打开/关闭节点
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNodeMouseClick(TreeNodeMouseClickEventArgs e)
         {
             base.OnNodeMouseClick(e);
@@ -543,7 +734,7 @@ namespace MControl.Controls
                             e.Node.Expand();
                         }
                     }
-                    if (base.SelectedNode != null)
+                    /*if (base.SelectedNode != null)
                     {
                         if (base.SelectedNode == e.Node && e.Node.IsExpanded)
                         {
@@ -555,7 +746,7 @@ namespace MControl.Controls
                                 }
                             }
                         }
-                    }
+                    }*/
                 }
             }
             catch (Exception ex)
@@ -563,10 +754,5 @@ namespace MControl.Controls
                 throw ex;
             }
         }
-
-        protected override void OnMouseDoubleClick(MouseEventArgs e)
-        {
-        }
     }
-
 }
