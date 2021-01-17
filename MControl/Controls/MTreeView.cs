@@ -44,15 +44,15 @@ namespace MControl.Controls
         Color m_ColorNodeHot = Color.FromArgb(255, 80, 80, 80);                           //鼠标进入节点的颜色
         Color m_ColorNodDefault = Color.FromArgb(40, 40, 40);                             //节点默认颜色
 
-        Color m_ColorSelectText = Color.FromArgb(255,32,32,32);                           //选中节点后字体的颜色
-        Color m_ColorTextHot = Color.FromArgb(255,200,200,222);                           //鼠标进入节点后字体的颜色
-        Color m_ColorTextDefault = Color.FromArgb(255, 200, 200, 222);                    //字体默认颜色
+        Color m_ColorSelectText = Color.FromArgb(255, 250, 250, 250);                           //选中节点后字体的颜色
+        Color m_ColorTextHot = Color.FromArgb(255,250,250,250);                           //鼠标进入节点后字体的颜色
+        Color m_ColorTextDefault = Color.FromArgb(255, 250, 250, 250);                    //字体默认颜色
         #endregion
 
         #region 字体
-        Font m_FontNodeSelect = new Font("宋体", 14, FontStyle.Bold);                    //选中节点后字体
-        Font m_FontNodeHot = new Font("宋体", 12, FontStyle.Bold);                       //鼠标进入节点后字体
-        Font m_FontNodeDefault = new Font("宋体", 12, FontStyle.Bold);                   //节点默认字体
+        Font m_FontNodeSelect = new Font("黑体", 14, FontStyle.Bold);                    //选中节点后字体
+        Font m_FontNodeHot = new Font("黑体", 12, FontStyle.Bold);                       //鼠标进入节点后字体
+        Font m_FontNodeDefault = new Font("黑体", 12, FontStyle.Bold);                   //节点默认字体
         #endregion
 
 
@@ -198,9 +198,74 @@ namespace MControl.Controls
                 e.Graphics.FillRectangle(new SolidBrush(m_ColorNodDefault), e.Bounds);
                 e.Graphics.DrawString(e.Node.Text, m_FontNodeDefault, new SolidBrush(m_ColorTextDefault), GetTextPoint(e, e.Node.Text, m_FontNodeDefault));
             }
+/*            e.Node.
+            //节点头图标绘制
+            if (e.Node.IsExpanded)
+            {
+                e.Graphics.DrawImage(AssemblyHelper.GetImage("Resources.tree_NodeExpend.png"), e.Node.Bounds.X - 12, e.Node.Bounds.Y + 6);
+            }
+            else if (e.Node.IsExpanded == false && e.Node.Nodes.Count > 0)
+            {
+                e.Graphics.DrawImage(AssemblyHelper.GetImage("Resources.tree_NodeCollaps.png"), e.Node.Bounds.X - 12, e.Node.Bounds.Y + 6);
+            }*/
+
+            //文本绘制
            
         }
 
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
+        {
+            base.OnMouseDoubleClick(e);
+            TreeNode tn = this.GetNodeAt(e.Location);
+            //调整【点击测试区域】大小，包括图标
+            Rectangle bounds = new Rectangle(tn.Bounds.Left - 12, tn.Bounds.Y, tn.Bounds.Width - 5, tn.Bounds.Height);
+            if (tn != null && bounds.Contains(e.Location) == false)
+            {
+                if (tn.IsExpanded == false)
+                    tn.Expand();
+                else
+                    tn.Collapse();
+            }
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            TreeNode tn = this.GetNodeAt(e.Location);
+            this.SelectedNode = tn;
+        }
+
+        TreeNode currentNode = null;
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            TreeNode tn = this.GetNodeAt(e.Location);
+            Graphics g = this.CreateGraphics();
+            if (currentNode != tn)
+            {
+                //绘制当前节点的hover背景
+                if (tn != null)
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, tn, new Rectangle(0, tn.Bounds.Y, this.Width, tn.Bounds.Height), TreeNodeStates.Hot));
+
+                //取消之前hover的节点背景
+                if (currentNode != null)
+                    OnDrawNode(new DrawTreeNodeEventArgs(g, currentNode, new Rectangle(0, currentNode.Bounds.Y, this.Width, currentNode.Bounds.Height), TreeNodeStates.Default));
+            }
+            currentNode = tn;
+            g.Dispose();
+        }
+
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            //移出控件时取消Hover背景
+            if (currentNode != null)
+            {
+                Graphics g = this.CreateGraphics();
+                OnDrawNode(new DrawTreeNodeEventArgs(g, currentNode, new Rectangle(0, currentNode.Bounds.Y, this.Width, currentNode.Bounds.Height), TreeNodeStates.Default));
+            }
+        }
     }
 
 }

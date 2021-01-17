@@ -43,57 +43,24 @@ namespace test
             treeNode6});
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点2");
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("节点3");
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.mTreeView1 = new MControl.Controls.MTreeView();
+            this.Sidebar = new System.Windows.Forms.Panel();
+            this.butSidebar = new System.Windows.Forms.PictureBox();
+            this.Sidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(524, 245);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(524, 297);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(504, 177);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // mTreeView1
             // 
+            this.mTreeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.mTreeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.mTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mTreeView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.mTreeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
             this.mTreeView1.FullRowSelect = true;
             this.mTreeView1.HideSelection = false;
             this.mTreeView1.HotTracking = true;
             this.mTreeView1.ItemHeight = 50;
-            this.mTreeView1.Location = new System.Drawing.Point(0, 35);
+            this.mTreeView1.Location = new System.Drawing.Point(4, 52);
             this.mTreeView1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.mTreeView1.Name = "mTreeView1";
             treeNode1.Name = "节点4";
@@ -122,33 +89,53 @@ namespace test
             this.mTreeView1.ShowLines = false;
             this.mTreeView1.ShowPlusMinus = false;
             this.mTreeView1.ShowRootLines = false;
-            this.mTreeView1.Size = new System.Drawing.Size(334, 533);
+            this.mTreeView1.Size = new System.Drawing.Size(216, 523);
             this.mTreeView1.TabIndex = 4;
             this.mTreeView1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Sidebar
+            // 
+            this.Sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Sidebar.Controls.Add(this.butSidebar);
+            this.Sidebar.Controls.Add(this.mTreeView1);
+            this.Sidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Sidebar.Location = new System.Drawing.Point(0, 35);
+            this.Sidebar.MaximumSize = new System.Drawing.Size(220, 0);
+            this.Sidebar.Name = "Sidebar";
+            this.Sidebar.Size = new System.Drawing.Size(220, 578);
+            this.Sidebar.TabIndex = 5;
+            // 
+            // butSidebar
+            // 
+            this.butSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.butSidebar.Image = global::test.Properties.Resources.侧栏1;
+            this.butSidebar.Location = new System.Drawing.Point(0, 0);
+            this.butSidebar.Name = "butSidebar";
+            this.butSidebar.Size = new System.Drawing.Size(40, 40);
+            this.butSidebar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.butSidebar.TabIndex = 7;
+            this.butSidebar.TabStop = false;
+            this.butSidebar.Click += new System.EventHandler(this.butSidebar_Click);
+            this.butSidebar.MouseEnter += new System.EventHandler(this.butSidebar_MouseEnter);
+            this.butSidebar.MouseLeave += new System.EventHandler(this.butSidebar_MouseLeave);
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(914, 568);
-            this.Controls.Add(this.mTreeView1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1066, 613);
+            this.Controls.Add(this.Sidebar);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "FormMain";
-            this.Controls.SetChildIndex(this.button1, 0);
-            this.Controls.SetChildIndex(this.button2, 0);
-            this.Controls.SetChildIndex(this.button3, 0);
-            this.Controls.SetChildIndex(this.mTreeView1, 0);
+            this.Controls.SetChildIndex(this.Sidebar, 0);
+            this.Sidebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private MControl.Controls.MTreeView mTreeView1;
+        private System.Windows.Forms.Panel Sidebar;
+        private System.Windows.Forms.PictureBox butSidebar;
     }
 }

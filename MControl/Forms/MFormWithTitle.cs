@@ -9,6 +9,7 @@
         3、鼠标点击标题栏移动窗口；
         4、鼠标缩放窗口大小；
         5、设置标题字体
+        6、设置窗体阴影
 *****************************************************************************************************/
 
 using System;
@@ -18,6 +19,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -30,6 +32,7 @@ namespace MControl.Forms
         {
             InitializeComponent();
 
+            SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
         }
 
         #region 标题栏设置
@@ -408,7 +411,17 @@ namespace MControl.Forms
             ButMaxmum_Click(null, null);
         }
         #endregion
-          
+
+        #region 窗体边框阴影效果变量申明
+        const int CS_DropSHADOW = 0x20000;
+        const int GCL_STYLE = (-26);
+        //声明Win32 API
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SetClassLong(IntPtr hwnd, int nIndex, int dwNewLong);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetClassLong(IntPtr hwnd, int nIndex);
+        #endregion
+
     }
 
 }

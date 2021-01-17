@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MControl.Forms;
+using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace test
 {
@@ -15,29 +17,47 @@ namespace test
         public FormMain()
         {
             InitializeComponent();
+
+            Sidebar.Width = 40;
+            mTreeView1.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        #region 侧栏开关按键设置
+        private void butSidebar_MouseEnter(object sender, EventArgs e)
         {
-             this.Icon = new Icon(@"C:\Users\mhf\Pictures\图标\飞机.ico");
-            if(this.Text == "主窗口")
+            butSidebar.BackColor = Color.FromArgb(255, 80, 80, 80);
+        }
+
+        private void butSidebar_MouseLeave(object sender, EventArgs e)
+        {
+            butSidebar.BackColor = Color.FromArgb(255, 40, 40, 40);
+        }
+
+        /// <summary>
+        /// 打开或关闭侧栏
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void butSidebar_Click(object sender, EventArgs e)
+        {
+            if(Sidebar.Width == 40)
             {
-                this.Text = "标题窗口";
+                for (int i = 0; i < 5; i++)
+                {
+                    Sidebar.Width += 36;
+                }
+                mTreeView1.Visible = true;
             }
             else
             {
-                this.Text = "主窗口";
+                for (int i = 0; i < 5; i++)
+                {
+                    Sidebar.Width -= 36;
+                }
+                mTreeView1.Visible = false;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.TitlePosition = !this.TitlePosition;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.ShowIcon = !this.ShowIcon;
-        }
+        #endregion
     }
 }
