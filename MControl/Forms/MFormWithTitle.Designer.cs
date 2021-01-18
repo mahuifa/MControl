@@ -144,7 +144,7 @@ namespace MControl.Forms
             this.Micon.TabIndex = 0;
             this.Micon.TabStop = false;
             // 
-            // FormWithTitle
+            // MFormWithTitle
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(523, 361);
@@ -152,9 +152,11 @@ namespace MControl.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(112, 0);
-            this.Name = "FormWithTitle";
+            this.Name = "MFormWithTitle";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "有标题的窗口";
             this.SizeChanged += new System.EventHandler(this.FormWithTitle_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MFormWithTitle_Paint);
             this.TitleBar.ResumeLayout(false);
             this.TitleBar.PerformLayout();
             this.panelBut.ResumeLayout(false);

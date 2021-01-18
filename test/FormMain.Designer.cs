@@ -30,12 +30,12 @@ namespace test
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点4");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("窗体", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("节点7");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("节点4");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("窗体", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点7");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
+            treeNode7});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.mTreeView1 = new MControl.Controls.MTreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -76,21 +76,21 @@ namespace test
             this.mTreeView1.NodeDividingLine = false;
             this.mTreeView1.NodeImageAlign = MControl.Controls.MTreeView.enumNodeImageAlign.Left;
             this.mTreeView1.NodeImageMode = MControl.Controls.MTreeView.enumNodeImageMode.OpenAndClose;
-            treeNode1.ImageIndex = 4;
-            treeNode1.Name = "节点4";
-            treeNode1.Text = "节点4";
-            treeNode2.ImageIndex = 0;
-            treeNode2.Name = "forms";
-            treeNode2.Text = "窗体";
-            treeNode3.Name = "节点7";
-            treeNode3.SelectedImageIndex = 3;
-            treeNode3.Text = "节点7";
-            treeNode4.ImageIndex = 2;
-            treeNode4.Name = "节点1";
-            treeNode4.Text = "节点1";
+            treeNode5.ImageIndex = 4;
+            treeNode5.Name = "节点4";
+            treeNode5.Text = "节点4";
+            treeNode6.ImageIndex = 0;
+            treeNode6.Name = "forms";
+            treeNode6.Text = "窗体";
+            treeNode7.Name = "节点7";
+            treeNode7.SelectedImageIndex = 3;
+            treeNode7.Text = "节点7";
+            treeNode8.ImageIndex = 2;
+            treeNode8.Name = "节点1";
+            treeNode8.Text = "节点1";
             this.mTreeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode4});
+            treeNode6,
+            treeNode8});
             this.mTreeView1.SelectedImageIndex = 0;
             this.mTreeView1.ShowLines = false;
             this.mTreeView1.ShowPlusMinus = false;
@@ -142,8 +142,8 @@ namespace test
             this.ClientSize = new System.Drawing.Size(1066, 613);
             this.Controls.Add(this.Sidebar);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FormMain";
+            this.ShowFormShadow = true;
             this.Controls.SetChildIndex(this.Sidebar, 0);
             this.Sidebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).EndInit();

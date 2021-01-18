@@ -10,6 +10,7 @@
         4、鼠标缩放窗口大小；
         5、设置标题字体
         6、设置窗体阴影
+        7、设置窗体边框圆角半径
 *****************************************************************************************************/
 
 using System;
@@ -17,6 +18,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -28,12 +30,47 @@ namespace MControl.Forms
     public partial class MFormWithTitle : Form
     {
         public MFormWithTitle()
-
         {
             InitializeComponent();
-
-            SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
         }
+
+
+        #region 窗体边框阴影设置
+        #region 窗体边框阴影效果变量申明
+        const int CS_DropSHADOW = 0x20000;
+        const int GCL_STYLE = (-26);
+        //声明Win32 API
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SetClassLong(IntPtr hwnd, int nIndex, int dwNewLong);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetClassLong(IntPtr hwnd, int nIndex);
+        #endregion
+
+        bool m_ShowFormShadow = false;
+        /// <summary>
+        ///  获取或设置窗体传统是否显示阴影。
+        /// </summary>
+        /// <returns>
+        /// 窗体传统是否显示阴影。
+        /// </returns>
+        [Category("自定义属性"), Description("设置窗体是否显示阴影。")]
+        public bool ShowFormShadow
+        {
+            get
+            {
+                return m_ShowFormShadow;
+            }
+            set
+            {
+                m_ShowFormShadow = value;
+               if(value)
+               {
+                    SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
+               }
+            }
+        }
+
+        #endregion
 
         #region 标题栏设置
 
@@ -43,7 +80,8 @@ namespace MControl.Forms
         /// <returns>
         /// System.Drawing.Icon，表示窗体的图标。
         /// </returns>
-        public new Icon  Icon
+        [Category("自定义属性"), Description("设置窗体的图标。")]
+        public new Icon Icon
         {
             get
             {
@@ -67,6 +105,7 @@ namespace MControl.Forms
         /// <returns>
         /// 如果窗体在标题栏中显示图标，则为 true；否则为 false。 默认值为 true。
         /// </returns>
+        [Category("自定义属性"), Description("设置一个值，该值指示是否在窗体的标题栏中显示图标。")]
         public new bool ShowIcon
         {
             get
@@ -136,6 +175,7 @@ namespace MControl.Forms
         /// <returns>
         /// 窗口的标题。
         /// </returns>
+        [Category("自定义属性"), Description("设置窗口的标题。")]
         public new string Text
         {
             get
@@ -417,16 +457,45 @@ namespace MControl.Forms
         }
         #endregion
 
-        #region 窗体边框阴影效果变量申明
-        const int CS_DropSHADOW = 0x20000;
-        const int GCL_STYLE = (-26);
-        //声明Win32 API
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int SetClassLong(IntPtr hwnd, int nIndex, int dwNewLong);
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int GetClassLong(IntPtr hwnd, int nIndex);
-        #endregion
+        #region 设置窗体边框圆角半径
 
+        int m_nBorderRadius = 10;
+        /// <summary>
+        ///  获取或设置窗体边框圆角半径。
+        /// </summary>
+        /// <returns>
+        ///  窗体边框圆角半径
+        /// </returns>
+        [Category("自定义属性"), Description("设置窗体边框圆角半径。")]
+        public int BorderRadius 
+        {
+            get
+            {
+                return m_nBorderRadius * 2;
+            }
+            set
+            {
+                m_nBorderRadius = value / 2;
+            }
+        }
+
+        private void MFormWithTitle_Paint(object sender, PaintEventArgs e)
+        {
+            GraphicsPath oPath = new GraphicsPath();
+            int x = 0;
+            int y = 0;
+            int w = Width;
+            int h = Height;
+            int a = 16;
+            oPath.AddArc(x, y, m_nBorderRadius, m_nBorderRadius, 180, 90);                                           //绘制左上角
+            oPath.AddArc(w - m_nBorderRadius, y, m_nBorderRadius, m_nBorderRadius, 270, 90);                         //绘制右上角
+            oPath.AddArc(w - m_nBorderRadius, h - m_nBorderRadius, m_nBorderRadius, m_nBorderRadius, 0, 90);         //绘制右下角
+            oPath.AddArc(x, h - m_nBorderRadius, m_nBorderRadius, m_nBorderRadius, 90, 90);                          //绘制左下角
+            oPath.CloseAllFigures();
+            Region = new Region(oPath);
+        }
+
+        #endregion
     }
 
 }
