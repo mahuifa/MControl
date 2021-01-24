@@ -30,17 +30,19 @@ namespace test
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("节点4");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("窗体", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("节点7");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("节点1", new System.Windows.Forms.TreeNode[] {
-            treeNode7});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("带标题的窗体");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("窗体", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("圆形按键");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("控件", 2, 5, new System.Windows.Forms.TreeNode[] {
+            treeNode3});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.mTreeView1 = new MControl.Controls.MTreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Sidebar = new System.Windows.Forms.Panel();
             this.butSidebar = new System.Windows.Forms.PictureBox();
+            this.mRoundButton1 = new MControl.Controls.Buttons.MRoundButton();
+            this.mRoundButton2 = new MControl.Controls.Buttons.MRoundButton();
             this.Sidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).BeginInit();
             this.SuspendLayout();
@@ -76,21 +78,22 @@ namespace test
             this.mTreeView1.NodeDividingLine = false;
             this.mTreeView1.NodeImageAlign = MControl.Controls.MTreeView.enumNodeImageAlign.Left;
             this.mTreeView1.NodeImageMode = MControl.Controls.MTreeView.enumNodeImageMode.OpenAndClose;
-            treeNode5.ImageIndex = 4;
-            treeNode5.Name = "节点4";
-            treeNode5.Text = "节点4";
-            treeNode6.ImageIndex = 0;
-            treeNode6.Name = "forms";
-            treeNode6.Text = "窗体";
-            treeNode7.Name = "节点7";
-            treeNode7.SelectedImageIndex = 3;
-            treeNode7.Text = "节点7";
-            treeNode8.ImageIndex = 2;
-            treeNode8.Name = "节点1";
-            treeNode8.Text = "节点1";
+            treeNode1.ImageIndex = -2;
+            treeNode1.Name = "FormWithTitle";
+            treeNode1.Text = "带标题的窗体";
+            treeNode2.ImageIndex = 5;
+            treeNode2.Name = "forms";
+            treeNode2.Text = "窗体";
+            treeNode3.Name = "RoundBut";
+            treeNode3.SelectedImageIndex = -2;
+            treeNode3.Text = "圆形按键";
+            treeNode4.ImageIndex = 2;
+            treeNode4.Name = "control";
+            treeNode4.SelectedImageIndex = 5;
+            treeNode4.Text = "控件";
             this.mTreeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode8});
+            treeNode2,
+            treeNode4});
             this.mTreeView1.SelectedImageIndex = 0;
             this.mTreeView1.ShowLines = false;
             this.mTreeView1.ShowPlusMinus = false;
@@ -98,6 +101,7 @@ namespace test
             this.mTreeView1.Size = new System.Drawing.Size(220, 538);
             this.mTreeView1.TabIndex = 4;
             this.mTreeView1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.mTreeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mTreeView1_NodeMouseClick);
             // 
             // imageList1
             // 
@@ -105,10 +109,10 @@ namespace test
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "窗口2.png");
             this.imageList1.Images.SetKeyName(1, "控件组.png");
-            this.imageList1.Images.SetKeyName(2, "关闭白.png");
-            this.imageList1.Images.SetKeyName(3, "关闭黑.png");
-            this.imageList1.Images.SetKeyName(4, "展开白.png");
-            this.imageList1.Images.SetKeyName(5, "展开黑.png");
+            this.imageList1.Images.SetKeyName(2, "关闭黑.png");
+            this.imageList1.Images.SetKeyName(3, "展开白.png");
+            this.imageList1.Images.SetKeyName(4, "展开黑.png");
+            this.imageList1.Images.SetKeyName(5, "关闭白.png");
             // 
             // Sidebar
             // 
@@ -136,15 +140,39 @@ namespace test
             this.butSidebar.MouseEnter += new System.EventHandler(this.butSidebar_MouseEnter);
             this.butSidebar.MouseLeave += new System.EventHandler(this.butSidebar_MouseLeave);
             // 
+            // mRoundButton1
+            // 
+            this.mRoundButton1.BackColor = System.Drawing.Color.Transparent;
+            this.mRoundButton1.Location = new System.Drawing.Point(342, 127);
+            this.mRoundButton1.MBackColor = System.Drawing.Color.Red;
+            this.mRoundButton1.MText = "红色的Button";
+            this.mRoundButton1.Name = "mRoundButton1";
+            this.mRoundButton1.Size = new System.Drawing.Size(133, 133);
+            this.mRoundButton1.TabIndex = 6;
+            // 
+            // mRoundButton2
+            // 
+            this.mRoundButton2.BackColor = System.Drawing.Color.Transparent;
+            this.mRoundButton2.Location = new System.Drawing.Point(502, 128);
+            this.mRoundButton2.MBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(230)))));
+            this.mRoundButton2.MText = "蓝色的Button";
+            this.mRoundButton2.Name = "mRoundButton2";
+            this.mRoundButton2.Size = new System.Drawing.Size(132, 132);
+            this.mRoundButton2.TabIndex = 7;
+            // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1066, 613);
+            this.Controls.Add(this.mRoundButton2);
+            this.Controls.Add(this.mRoundButton1);
             this.Controls.Add(this.Sidebar);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "FormMain";
             this.ShowFormShadow = true;
             this.Controls.SetChildIndex(this.Sidebar, 0);
+            this.Controls.SetChildIndex(this.mRoundButton1, 0);
+            this.Controls.SetChildIndex(this.mRoundButton2, 0);
             this.Sidebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).EndInit();
             this.ResumeLayout(false);
@@ -156,5 +184,7 @@ namespace test
         private System.Windows.Forms.Panel Sidebar;
         private System.Windows.Forms.PictureBox butSidebar;
         private System.Windows.Forms.ImageList imageList1;
+        private MControl.Controls.Buttons.MRoundButton mRoundButton1;
+        private MControl.Controls.Buttons.MRoundButton mRoundButton2;
     }
 }

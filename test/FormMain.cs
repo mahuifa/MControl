@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MControl.Forms;
 using System.Threading;
 using System.Runtime.InteropServices;
+using test.Demo;
 
 namespace test
 {
@@ -59,5 +60,24 @@ namespace test
         }
 
         #endregion
+
+
+        private void mTreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            Console.WriteLine(e.Node.Text);
+            switch(e.Node.Text.Trim())
+            {
+                case "带标题的窗体":
+                    {
+                        DFormWithTitle dFormWithTitle = new DFormWithTitle();
+                        dFormWithTitle.ShowDialog();
+                        break;
+                    }
+                case "圆形按键":
+                    {
+                        break;
+                    }
+            }
+        }
     }
 }

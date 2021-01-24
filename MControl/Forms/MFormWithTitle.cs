@@ -467,7 +467,7 @@ namespace MControl.Forms
         ///  窗体边框圆角半径
         /// </returns>
         [Category("自定义属性"), Description("设置窗体边框圆角半径。")]
-        public int BorderRadius 
+        private int BorderRadius 
         {
             get
             {
@@ -481,18 +481,19 @@ namespace MControl.Forms
 
         private void MFormWithTitle_Paint(object sender, PaintEventArgs e)
         {
-            GraphicsPath oPath = new GraphicsPath();
+            //绘制圆角与窗口缩放冲突
+/*            GraphicsPath l_gp = new GraphicsPath();
             int x = 0;
             int y = 0;
-            int w = Width;
-            int h = Height;
+            int w = Width-1;
+            int h = Height -1;
             int a = 16;
-            oPath.AddArc(x, y, m_nBorderRadius, m_nBorderRadius, 180, 90);                                           //绘制左上角
-            oPath.AddArc(w - m_nBorderRadius, y, m_nBorderRadius, m_nBorderRadius, 270, 90);                         //绘制右上角
-            oPath.AddArc(w - m_nBorderRadius, h - m_nBorderRadius, m_nBorderRadius, m_nBorderRadius, 0, 90);         //绘制右下角
-            oPath.AddArc(x, h - m_nBorderRadius, m_nBorderRadius, m_nBorderRadius, 90, 90);                          //绘制左下角
-            oPath.CloseAllFigures();
-            Region = new Region(oPath);
+            l_gp.AddArc(x, y, m_nBorderRadius, m_nBorderRadius, 180, 90);                                           //绘制左上角
+            l_gp.AddArc(w - m_nBorderRadius, y, m_nBorderRadius, m_nBorderRadius, 270, 90);                         //绘制右上角
+            l_gp.AddArc(w - m_nBorderRadius, h - m_nBorderRadius, m_nBorderRadius, m_nBorderRadius, 0, 90);         //绘制右下角
+            l_gp.AddArc(x, h - m_nBorderRadius, m_nBorderRadius, m_nBorderRadius, 90, 90);                          //绘制左下角
+            l_gp.CloseAllFigures();
+            this.Region = new Region(l_gp);*/
         }
 
         #endregion

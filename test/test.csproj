@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Demo\DFormWithTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demo\DFormWithTitle.Designer.cs">
+      <DependentUpon>DFormWithTitle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Demo\DFormWithTitle.resx">
+      <DependentUpon>DFormWithTitle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -85,9 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\侧栏1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\关闭白.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\展开白.png" />
