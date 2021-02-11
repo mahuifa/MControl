@@ -467,7 +467,7 @@ namespace MControl.Forms
         ///  窗体边框圆角半径
         /// </returns>
         [Category("自定义属性"), Description("设置窗体边框圆角半径。")]
-        private int BorderRadius 
+        private int BorderRadius
         {
             get
             {

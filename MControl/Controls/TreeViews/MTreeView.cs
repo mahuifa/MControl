@@ -111,15 +111,15 @@ namespace MControl.Controls
         /// <summary>
         /// 选中节点后字体
         /// </summary>
-        Font m_FontNodeSelect = new Font("黑体", 14, FontStyle.Bold);
+        Font m_FontNodeSelect = new Font("宋体", 14, FontStyle.Bold);
         /// <summary>
         /// 鼠标进入节点后字体
         /// </summary>
-        Font m_FontNodeHot = new Font("黑体", 12, FontStyle.Bold);
+        Font m_FontNodeHot = new Font("宋体", 12, FontStyle.Bold);
         /// <summary>
         /// 节点默认字体
         /// </summary>
-        Font m_FontNodeDefault = new Font("黑体", 12, FontStyle.Bold);
+        Font m_FontNodeDefault = new Font("宋体", 12, FontStyle.Bold);
         #endregion
 
         #region 其它字段

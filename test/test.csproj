@@ -48,11 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo\DFormWithTitle.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Demo\DButtons.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Demo\DFormWithTitle.Designer.cs">
-      <DependentUpon>DFormWithTitle.cs</DependentUpon>
+    <Compile Include="Demo\DButtons.Designer.cs">
+      <DependentUpon>DButtons.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -62,8 +62,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Demo\DFormWithTitle.resx">
-      <DependentUpon>DFormWithTitle.cs</DependentUpon>
+    <EmbeddedResource Include="Demo\DButtons.resx">
+      <DependentUpon>DButtons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -98,5 +98,6 @@
   <ItemGroup>
     <None Include="Resources\展开白.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

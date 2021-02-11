@@ -64,17 +64,18 @@ namespace test
 
         private void mTreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            Console.WriteLine(e.Node.Text);
+            this.panelShow.Controls.Clear();
             switch(e.Node.Text.Trim())
             {
                 case "带标题的窗体":
                     {
-                        DFormWithTitle dFormWithTitle = new DFormWithTitle();
-                        dFormWithTitle.ShowDialog();
                         break;
                     }
-                case "圆形按键":
+                case "按键":
                     {
+                        DButtons dButtons = new DButtons();
+                        dButtons.Dock = DockStyle.Fill;
+                        this.panelShow.Controls.Add(dButtons);
                         break;
                     }
             }

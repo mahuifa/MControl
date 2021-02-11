@@ -6,19 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MControl.Forms;
 
 namespace test.Demo
 {
-    public partial class DFormWithTitle : MFormWithTitle
+    public partial class DButtons : UserControl
     {
-        public DFormWithTitle()
+        public DButtons()
         {
             InitializeComponent();
-        }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
         }
     }
 }

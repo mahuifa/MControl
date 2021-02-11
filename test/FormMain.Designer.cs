@@ -33,7 +33,7 @@ namespace test
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("带标题的窗体");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("窗体", new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("圆形按键");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("按键", -2, -2);
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("控件", 2, 5, new System.Windows.Forms.TreeNode[] {
             treeNode3});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
@@ -41,10 +41,11 @@ namespace test
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Sidebar = new System.Windows.Forms.Panel();
             this.butSidebar = new System.Windows.Forms.PictureBox();
-            this.mRoundButton1 = new MControl.Controls.Buttons.MRoundButton();
-            this.mRoundButton2 = new MControl.Controls.Buttons.MRoundButton();
+            this.panelShow = new System.Windows.Forms.Panel();
+            this.mEllipseButton1 = new MControl.Controls.Buttons.MEllipseButton();
             this.Sidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).BeginInit();
+            this.panelShow.SuspendLayout();
             this.SuspendLayout();
             // 
             // mTreeView1
@@ -84,9 +85,10 @@ namespace test
             treeNode2.ImageIndex = 5;
             treeNode2.Name = "forms";
             treeNode2.Text = "窗体";
-            treeNode3.Name = "RoundBut";
+            treeNode3.ImageIndex = -2;
+            treeNode3.Name = "But";
             treeNode3.SelectedImageIndex = -2;
-            treeNode3.Text = "圆形按键";
+            treeNode3.Text = "按键";
             treeNode4.ImageIndex = 2;
             treeNode4.Name = "control";
             treeNode4.SelectedImageIndex = 5;
@@ -98,7 +100,7 @@ namespace test
             this.mTreeView1.ShowLines = false;
             this.mTreeView1.ShowPlusMinus = false;
             this.mTreeView1.ShowRootLines = false;
-            this.mTreeView1.Size = new System.Drawing.Size(220, 538);
+            this.mTreeView1.Size = new System.Drawing.Size(220, 535);
             this.mTreeView1.TabIndex = 4;
             this.mTreeView1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.mTreeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mTreeView1_NodeMouseClick);
@@ -140,41 +142,42 @@ namespace test
             this.butSidebar.MouseEnter += new System.EventHandler(this.butSidebar_MouseEnter);
             this.butSidebar.MouseLeave += new System.EventHandler(this.butSidebar_MouseLeave);
             // 
-            // mRoundButton1
+            // panelShow
             // 
-            this.mRoundButton1.BackColor = System.Drawing.Color.Transparent;
-            this.mRoundButton1.Location = new System.Drawing.Point(342, 127);
-            this.mRoundButton1.MBackColor = System.Drawing.Color.Red;
-            this.mRoundButton1.MText = "红色的Button";
-            this.mRoundButton1.Name = "mRoundButton1";
-            this.mRoundButton1.Size = new System.Drawing.Size(133, 133);
-            this.mRoundButton1.TabIndex = 6;
+            this.panelShow.BackColor = System.Drawing.Color.White;
+            this.panelShow.Controls.Add(this.mEllipseButton1);
+            this.panelShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelShow.Font = new System.Drawing.Font("宋体", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.panelShow.Location = new System.Drawing.Point(220, 35);
+            this.panelShow.Name = "panelShow";
+            this.panelShow.Size = new System.Drawing.Size(846, 578);
+            this.panelShow.TabIndex = 6;
             // 
-            // mRoundButton2
+            // mEllipseButton1
             // 
-            this.mRoundButton2.BackColor = System.Drawing.Color.Transparent;
-            this.mRoundButton2.Location = new System.Drawing.Point(502, 128);
-            this.mRoundButton2.MBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(230)))));
-            this.mRoundButton2.MText = "蓝色的Button";
-            this.mRoundButton2.Name = "mRoundButton2";
-            this.mRoundButton2.Size = new System.Drawing.Size(132, 132);
-            this.mRoundButton2.TabIndex = 7;
+            this.mEllipseButton1.FontText = new System.Drawing.Font("宋体", 12F);
+            this.mEllipseButton1.Location = new System.Drawing.Point(77, 89);
+            this.mEllipseButton1.MBackColor = System.Drawing.Color.White;
+            this.mEllipseButton1.MText = "Button";
+            this.mEllipseButton1.Name = "mEllipseButton1";
+            this.mEllipseButton1.Size = new System.Drawing.Size(408, 136);
+            this.mEllipseButton1.TabIndex = 0;
+            this.mEllipseButton1.TextColor = System.Drawing.Color.Black;
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1066, 613);
-            this.Controls.Add(this.mRoundButton2);
-            this.Controls.Add(this.mRoundButton1);
+            this.Controls.Add(this.panelShow);
             this.Controls.Add(this.Sidebar);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "FormMain";
             this.ShowFormShadow = true;
             this.Controls.SetChildIndex(this.Sidebar, 0);
-            this.Controls.SetChildIndex(this.mRoundButton1, 0);
-            this.Controls.SetChildIndex(this.mRoundButton2, 0);
+            this.Controls.SetChildIndex(this.panelShow, 0);
             this.Sidebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).EndInit();
+            this.panelShow.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -184,7 +187,7 @@ namespace test
         private System.Windows.Forms.Panel Sidebar;
         private System.Windows.Forms.PictureBox butSidebar;
         private System.Windows.Forms.ImageList imageList1;
-        private MControl.Controls.Buttons.MRoundButton mRoundButton1;
-        private MControl.Controls.Buttons.MRoundButton mRoundButton2;
+        private System.Windows.Forms.Panel panelShow;
+        private MControl.Controls.Buttons.MEllipseButton mEllipseButton1;
     }
 }

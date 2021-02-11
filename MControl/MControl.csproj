@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Buttons\MEllipseButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\MEllipseButton.Designer.cs">
+      <DependentUpon>MEllipseButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Buttons\MRoundButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Folder Include="Colors\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\Buttons\MEllipseButton.resx">
+      <DependentUpon>MEllipseButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MFormWithTitle.resx">
       <DependentUpon>MFormWithTitle.cs</DependentUpon>
     </EmbeddedResource>
