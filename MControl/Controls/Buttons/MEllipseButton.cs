@@ -32,14 +32,14 @@ namespace MControl.Controls.Buttons
         }
 
         #region 字段
-        string m_strText = "Button";
-        Color m_ColorText = Color.Black;
-        Color m_colorBack = Color.White;
+        string m_strText = "Button";                                              
+        Color m_ColorText = Color.Black;                                             //文本颜色
+        Color m_ColorBack = Color.White;                                             //背景颜色
+        Color m_ColorLight = Color.FromArgb(255, 255, 77);                           //光芒颜色
         Font m_FontText = new Font("宋体", 12, FontStyle.Regular);
-        Bitmap m_bitmap = null;                                                      //控件默认的样式
+        Bitmap m_bitmap = null;                                                       //控件默认的样式
         Bitmap m_bitmapBack = null;                                                   //控件默认的样式
         bool m_bMouseDown = false;                                                    //鼠标是否按下
-        int m_nMouseDown = 0;                       
         #endregion
 
         #region 属性
@@ -117,12 +117,32 @@ namespace MControl.Controls.Buttons
         {
             get
             {
-                return m_colorBack;
+                return m_ColorBack;
             }
             set
             {
-                m_colorBack = value;
+                m_ColorBack = value;
                 PaintImage();
+            }
+        }
+
+        /// <summary>
+        ///  获取或设置控件光芒颜色。
+        /// </summary>
+        /// <returns>
+        /// 控件光芒颜色。
+        /// </returns>
+        [Category("自定义属性"), Description("设置控件光芒颜色。")]
+        public Color MLightColor
+        {
+            get
+            {
+                return m_ColorLight;
+            }
+            set
+            {
+                m_ColorLight = value;
+                PaintBackImage();
             }
         }
 
@@ -133,7 +153,6 @@ namespace MControl.Controls.Buttons
         /// </summary>
         private void PaintBackImage()
         {
-
             m_bitmapBack = new Bitmap(this.Width, this.Height);                                          //创建画布
             Graphics l_graphics = Graphics.FromImage(m_bitmapBack);                                      //创建画图对象
             l_graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -146,7 +165,7 @@ namespace MControl.Controls.Buttons
             graphicsPath.AddArc(new RectangleF(0, 0, l_nHeight, l_nHeight), 90, 180);
 
             PathGradientBrush pathGradientBrush = new PathGradientBrush(graphicsPath);
-            pathGradientBrush.CenterColor = Color.FromArgb(114, 230, 0);
+            pathGradientBrush.CenterColor = m_ColorLight;
             pathGradientBrush.CenterPoint = new PointF(this.Width / 2, this.Height / 2);
             pathGradientBrush.SurroundColors = new Color[] { Color.Transparent };
             pathGradientBrush.SetBlendTriangularShape(0.2f, 1f);
@@ -173,7 +192,7 @@ namespace MControl.Controls.Buttons
             graphicsPath.AddArc(new RectangleF(this.Width - l_nHeight, l_nDiff, l_nHeight - l_nDiff * 2, l_nHeight - l_nDiff * 2), 270, 180);
             graphicsPath.AddLine(this.Width - l_nHeight, l_nHeight - l_nDiff, l_nHeight / 2 + l_nDiff, l_nHeight - l_nDiff);
             graphicsPath.AddArc(new RectangleF(l_nDiff * 2, l_nDiff, l_nHeight - l_nDiff * 2, l_nHeight - l_nDiff * 2), 90, 180);
-            l_graphics.FillPath(new SolidBrush(m_colorBack), graphicsPath);
+            l_graphics.FillPath(new SolidBrush(m_ColorBack), graphicsPath);
 
             /*********************************** <绘制Button阴影> **********************************************/
             LinearGradientBrush l_lgp = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(150,255,255,255), Color.FromArgb(150, 1, 1, 1), 85);
@@ -183,7 +202,7 @@ namespace MControl.Controls.Buttons
 
             /*********************************** <绘制Text> **********************************************/
             SizeF l_sizeF = l_graphics.MeasureString(m_strText, m_FontText);                            //计算文本的宽高
-            Color l_colorText = m_bMouseDown ? m_colorBack : m_ColorText;
+            Color l_colorText = m_bMouseDown ? m_ColorBack : m_ColorText;
             l_graphics.DrawString(m_strText, m_FontText, new SolidBrush(l_colorText), new PointF((this.Width - l_sizeF.Width) / 2, (this.Height - l_sizeF.Height) / 2));
 
             l_graphics.Dispose();

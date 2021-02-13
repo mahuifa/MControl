@@ -314,6 +314,7 @@ namespace MControl.Forms
         /// <param name="m"></param>
         protected override void WndProc(ref Message m)
         {
+            //存在Bug：当控件与窗口重合后无法使用鼠标缩放
             switch (m.Msg)
             {
                 case WM_NCHITTEST:

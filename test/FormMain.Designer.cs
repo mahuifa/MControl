@@ -42,10 +42,8 @@ namespace test
             this.Sidebar = new System.Windows.Forms.Panel();
             this.butSidebar = new System.Windows.Forms.PictureBox();
             this.panelShow = new System.Windows.Forms.Panel();
-            this.mEllipseButton1 = new MControl.Controls.Buttons.MEllipseButton();
             this.Sidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).BeginInit();
-            this.panelShow.SuspendLayout();
             this.SuspendLayout();
             // 
             // mTreeView1
@@ -100,7 +98,7 @@ namespace test
             this.mTreeView1.ShowLines = false;
             this.mTreeView1.ShowPlusMinus = false;
             this.mTreeView1.ShowRootLines = false;
-            this.mTreeView1.Size = new System.Drawing.Size(220, 535);
+            this.mTreeView1.Size = new System.Drawing.Size(220, 566);
             this.mTreeView1.TabIndex = 4;
             this.mTreeView1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.mTreeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mTreeView1_NodeMouseClick);
@@ -125,7 +123,7 @@ namespace test
             this.Sidebar.Location = new System.Drawing.Point(0, 35);
             this.Sidebar.MaximumSize = new System.Drawing.Size(220, 0);
             this.Sidebar.Name = "Sidebar";
-            this.Sidebar.Size = new System.Drawing.Size(220, 578);
+            this.Sidebar.Size = new System.Drawing.Size(220, 609);
             this.Sidebar.TabIndex = 5;
             // 
             // butSidebar
@@ -145,29 +143,17 @@ namespace test
             // panelShow
             // 
             this.panelShow.BackColor = System.Drawing.Color.White;
-            this.panelShow.Controls.Add(this.mEllipseButton1);
             this.panelShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelShow.Font = new System.Drawing.Font("宋体", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panelShow.Location = new System.Drawing.Point(220, 35);
             this.panelShow.Name = "panelShow";
-            this.panelShow.Size = new System.Drawing.Size(846, 578);
+            this.panelShow.Size = new System.Drawing.Size(884, 609);
             this.panelShow.TabIndex = 6;
-            // 
-            // mEllipseButton1
-            // 
-            this.mEllipseButton1.FontText = new System.Drawing.Font("宋体", 12F);
-            this.mEllipseButton1.Location = new System.Drawing.Point(77, 89);
-            this.mEllipseButton1.MBackColor = System.Drawing.Color.White;
-            this.mEllipseButton1.MText = "Button";
-            this.mEllipseButton1.Name = "mEllipseButton1";
-            this.mEllipseButton1.Size = new System.Drawing.Size(408, 136);
-            this.mEllipseButton1.TabIndex = 0;
-            this.mEllipseButton1.TextColor = System.Drawing.Color.Black;
             // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1066, 613);
+            this.ClientSize = new System.Drawing.Size(1104, 644);
             this.Controls.Add(this.panelShow);
             this.Controls.Add(this.Sidebar);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -177,7 +163,6 @@ namespace test
             this.Controls.SetChildIndex(this.panelShow, 0);
             this.Sidebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.butSidebar)).EndInit();
-            this.panelShow.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -188,6 +173,5 @@ namespace test
         private System.Windows.Forms.PictureBox butSidebar;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel panelShow;
-        private MControl.Controls.Buttons.MEllipseButton mEllipseButton1;
     }
 }
