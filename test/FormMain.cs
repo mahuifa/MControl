@@ -69,6 +69,8 @@ namespace test
             {
                 case "带标题的窗体":
                     {
+                        Form form = new MFormWithTitle();
+                        form.Show();
                         break;
                     }
                 case "按键":

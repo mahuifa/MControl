@@ -47,7 +47,7 @@ namespace MControl.Forms
             // 
             // TitleBar
             // 
-            this.TitleBar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.TitleBar.BackColor = System.Drawing.Color.DodgerBlue;
             this.TitleBar.Controls.Add(this.panelBut);
             this.TitleBar.Controls.Add(this.Title);
             this.TitleBar.Controls.Add(this.Micon);
