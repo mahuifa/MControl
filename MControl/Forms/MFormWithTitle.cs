@@ -347,20 +347,13 @@ namespace MControl.Forms
         #endregion
 
         #region 窗口移动
-        private Point m_PointMouse;                   //保存鼠标移动前的坐标
-        /// <summary>
-        /// 鼠标在标题栏按下后开始监听鼠标移动事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TitleBar_MouseMove(object sender, MouseEventArgs e)
-        {
-            Point l_Point = this.Location;
-            this.Location = new Point(l_Point.X + (MousePosition.X - m_PointMouse.X),                                     //设置窗口位置
-                l_Point.Y + (MousePosition.Y - m_PointMouse.Y));
-            m_PointMouse = MousePosition;                                                                                 //记录当前鼠标坐标
-        }
-
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_MOVE = 0xF010;              //移动窗口
+        public const int HTCAPTION = 0x0002;
         /// <summary>
         /// 鼠标移动事件，获取鼠标当前坐标
         /// </summary>
@@ -368,22 +361,11 @@ namespace MControl.Forms
         /// <param name="e"></param>
         private void TitleBar_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                m_PointMouse = MousePosition;
-                this.TitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);          //添加鼠标移动监听事件
-            }
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
         }
 
-        /// <summary>
-        /// 鼠标按键释放后停止监听鼠标坐标
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TitleBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.TitleBar.MouseMove -= new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);              //释放鼠标移动监听事件
-        }
+
 
         #endregion
 

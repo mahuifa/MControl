@@ -60,7 +60,6 @@ namespace MControl.Forms
             this.TitleBar.TabIndex = 0;
             this.TitleBar.DoubleClick += new System.EventHandler(this.TitleBar_DoubleClick);
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
-            this.TitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseUp);
             // 
             // panelBut
             // 
