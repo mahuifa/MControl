@@ -10,6 +10,7 @@ using MControl.Forms;
 using System.Threading;
 using System.Runtime.InteropServices;
 using test.Demo;
+using MControl.Controls.Timers;
 
 namespace test
 {
@@ -81,6 +82,11 @@ namespace test
                         break;
                     }
             }
+        }
+
+        private void mTimer1_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine(123);
         }
     }
 }

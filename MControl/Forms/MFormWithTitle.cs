@@ -129,7 +129,7 @@ namespace MControl.Forms
             {
                 if (m_TitlePosition)
                 {
-                    this.Title.Location = new Point(40, 10);
+                    this.Title.Location = new Point(50, 15);
                 }
                 else
                 {
@@ -140,7 +140,7 @@ namespace MControl.Forms
             {
                 if (m_TitlePosition)
                 {
-                    this.Title.Location = new Point(10, 10);
+                    this.Title.Location = new Point(10, 15);
                 }
                 else
                 {
@@ -319,8 +319,7 @@ namespace MControl.Forms
             {
                 case WM_NCHITTEST:
                     base.WndProc(ref m);
-                    Point vPoint = new Point((int)m.LParam & 0xFFFF,
-                        (int)m.LParam >> 16 & 0xFFFF);
+                    Point vPoint = new Point((int)m.LParam & 0xFFFF,(int)m.LParam >> 16 & 0xFFFF);
                     vPoint = PointToClient(vPoint);
                     if (vPoint.X <= 5)
                         if (vPoint.Y <= 5)
@@ -344,6 +343,8 @@ namespace MControl.Forms
                     break;
             }
         }
+       
+
         #endregion
 
         #region 窗口移动

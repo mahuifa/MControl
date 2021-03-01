@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using MControl.Tools;
 namespace MControl.Controls.Buttons
 {
+    [DefaultEvent("Click")]
     public class MRoundButton: UserControl
     {
         public MRoundButton()

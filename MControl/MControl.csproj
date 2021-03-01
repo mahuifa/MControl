@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Buttons\MAnimatedButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\MAnimatedButton.Designer.cs">
+      <DependentUpon>MAnimatedButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Buttons\MEllipseButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -52,6 +58,7 @@
     <Compile Include="Controls\Buttons\MRoundButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\Timers\MTimer.cs" />
     <Compile Include="Controls\TreeViews\MTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -76,6 +83,9 @@
     <Folder Include="Colors\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\Buttons\MAnimatedButton.resx">
+      <DependentUpon>MAnimatedButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Buttons\MEllipseButton.resx">
       <DependentUpon>MEllipseButton.cs</DependentUpon>
     </EmbeddedResource>

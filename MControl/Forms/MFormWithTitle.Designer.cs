@@ -53,10 +53,10 @@ namespace MControl.Forms
             this.TitleBar.Controls.Add(this.Micon);
             this.TitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.TitleBar.Location = new System.Drawing.Point(0, 0);
-            this.TitleBar.MaximumSize = new System.Drawing.Size(0, 35);
-            this.TitleBar.MinimumSize = new System.Drawing.Size(0, 35);
+            this.TitleBar.MaximumSize = new System.Drawing.Size(0, 45);
+            this.TitleBar.MinimumSize = new System.Drawing.Size(0, 45);
             this.TitleBar.Name = "TitleBar";
-            this.TitleBar.Size = new System.Drawing.Size(523, 35);
+            this.TitleBar.Size = new System.Drawing.Size(523, 45);
             this.TitleBar.TabIndex = 0;
             this.TitleBar.DoubleClick += new System.EventHandler(this.TitleBar_DoubleClick);
             this.TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
@@ -68,10 +68,10 @@ namespace MControl.Forms
             this.panelBut.Controls.Add(this.ButMinmum);
             this.panelBut.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelBut.Location = new System.Drawing.Point(411, 0);
-            this.panelBut.MaximumSize = new System.Drawing.Size(112, 35);
+            this.panelBut.MaximumSize = new System.Drawing.Size(112, 45);
             this.panelBut.MinimumSize = new System.Drawing.Size(112, 35);
             this.panelBut.Name = "panelBut";
-            this.panelBut.Size = new System.Drawing.Size(112, 35);
+            this.panelBut.Size = new System.Drawing.Size(112, 45);
             this.panelBut.TabIndex = 2;
             // 
             // ButClose
@@ -79,7 +79,7 @@ namespace MControl.Forms
             this.ButClose.Image = global::MControl.Resource1.CloseBlack;
             this.ButClose.Location = new System.Drawing.Point(80, 7);
             this.ButClose.Name = "ButClose";
-            this.ButClose.Size = new System.Drawing.Size(20, 20);
+            this.ButClose.Size = new System.Drawing.Size(25, 25);
             this.ButClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ButClose.TabIndex = 3;
             this.ButClose.TabStop = false;
@@ -94,7 +94,7 @@ namespace MControl.Forms
             this.ButMaxmum.Image = global::MControl.Resource1.MaximizeBlack;
             this.ButMaxmum.Location = new System.Drawing.Point(41, 7);
             this.ButMaxmum.Name = "ButMaxmum";
-            this.ButMaxmum.Size = new System.Drawing.Size(20, 20);
+            this.ButMaxmum.Size = new System.Drawing.Size(25, 25);
             this.ButMaxmum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ButMaxmum.TabIndex = 2;
             this.ButMaxmum.TabStop = false;
@@ -110,7 +110,7 @@ namespace MControl.Forms
             this.ButMinmum.Image = ((System.Drawing.Image)(resources.GetObject("ButMinmum.Image")));
             this.ButMinmum.Location = new System.Drawing.Point(3, 7);
             this.ButMinmum.Name = "ButMinmum";
-            this.ButMinmum.Size = new System.Drawing.Size(20, 20);
+            this.ButMinmum.Size = new System.Drawing.Size(25, 25);
             this.ButMinmum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ButMinmum.TabIndex = 1;
             this.ButMinmum.TabStop = false;
@@ -125,20 +125,21 @@ namespace MControl.Forms
             this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Title.AutoSize = true;
-            this.Title.Location = new System.Drawing.Point(40, 10);
+            this.Title.Font = new System.Drawing.Font("宋体", 11.78182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Title.Location = new System.Drawing.Point(50, 15);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(63, 14);
+            this.Title.Size = new System.Drawing.Size(85, 19);
             this.Title.TabIndex = 1;
             this.Title.Text = "标题窗体";
             // 
             // Micon
             // 
             this.Micon.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Micon.Location = new System.Drawing.Point(3, 3);
-            this.Micon.MaximumSize = new System.Drawing.Size(29, 29);
-            this.Micon.MinimumSize = new System.Drawing.Size(29, 29);
+            this.Micon.Location = new System.Drawing.Point(2, 2);
+            this.Micon.MaximumSize = new System.Drawing.Size(40, 40);
+            this.Micon.MinimumSize = new System.Drawing.Size(40, 40);
             this.Micon.Name = "Micon";
-            this.Micon.Size = new System.Drawing.Size(29, 29);
+            this.Micon.Size = new System.Drawing.Size(40, 40);
             this.Micon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Micon.TabIndex = 0;
             this.Micon.TabStop = false;

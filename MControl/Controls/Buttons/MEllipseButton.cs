@@ -19,6 +19,7 @@ using System.Windows.Forms;
 
 namespace MControl.Controls.Buttons
 {
+    [DefaultEvent("Click")]
     public partial class MEllipseButton : UserControl
     {
         public MEllipseButton()
@@ -38,7 +39,7 @@ namespace MControl.Controls.Buttons
         Color m_ColorLight = Color.FromArgb(255, 255, 77);                           //光芒颜色
         Font m_FontText = new Font("宋体", 12, FontStyle.Regular);
         Bitmap m_bitmap = null;                                                       //控件默认的样式
-        Bitmap m_bitmapBack = null;                                                   //控件默认的样式
+        Bitmap m_bitmapBack = null;                                                   //控件背景的样式
         bool m_bMouseDown = false;                                                    //鼠标是否按下
         #endregion
 
@@ -182,11 +183,11 @@ namespace MControl.Controls.Buttons
             m_bitmap = new Bitmap(this.Width, this.Height);                                          //创建画布
             Graphics l_graphics = Graphics.FromImage(m_bitmap);                                      //创建画图对象
             l_graphics.SmoothingMode = SmoothingMode.AntiAlias;                                      //抗锯齿
+            l_graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;   
             GraphicsPath graphicsPath = new GraphicsPath();
             int l_nHeight = this.Height;
 
             /*********************************** <绘制Button主体> **********************************************/
-            graphicsPath = new GraphicsPath();
             int l_nDiff = this.Height / 5;
             graphicsPath.AddLine(l_nHeight / 2 + l_nDiff, l_nDiff, this.Width - l_nHeight / 2 - l_nDiff, l_nDiff);
             graphicsPath.AddArc(new RectangleF(this.Width - l_nHeight, l_nDiff, l_nHeight - l_nDiff * 2, l_nHeight - l_nDiff * 2), 270, 180);
